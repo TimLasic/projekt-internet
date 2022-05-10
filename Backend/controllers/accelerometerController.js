@@ -54,7 +54,8 @@ module.exports = {
         var accelerometer = new AccelerometerModel({
 			x : req.body.x,
 			y : req.body.y,
-			z : req.body.z
+			z : req.body.z,
+            locationId : req.body.locationId
         });
 
         accelerometer.save(function (err, accelerometer) {
@@ -92,6 +93,7 @@ module.exports = {
             accelerometer.x = req.body.x ? req.body.x : accelerometer.x;
 			accelerometer.y = req.body.y ? req.body.y : accelerometer.y;
 			accelerometer.z = req.body.z ? req.body.z : accelerometer.z;
+            accelerometer.locationId = req.body.locationId ? req.body.locationId : accelerometer.locationId;
 			
             accelerometer.save(function (err, accelerometer) {
                 if (err) {

@@ -54,6 +54,8 @@ module.exports = {
         var location = new LocationModel({
 			latitude : req.body.latitude,
 			longitude : req.body.longitude,
+            latitudeOld : req.body.latitudeOld,
+            longitudeOld : req.body.longitudeOld,
 			state : req.body.state
         });
 
@@ -91,6 +93,8 @@ module.exports = {
 
             location.latitude = req.body.latitude ? req.body.latitude : location.latitude;
 			location.longitude = req.body.longitude ? req.body.longitude : location.longitude;
+            location.latitudeOld = req.body.latitudeOld ? req.body.latitudeOld : location.latitudeOld;
+            location.longitudeOld = req.body.longitudeOld ? req.body.longitudeOld : location.longitudeOld;
 			location.state = req.body.state ? req.body.state : location.state;
 			
             location.save(function (err, location) {

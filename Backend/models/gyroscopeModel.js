@@ -5,7 +5,8 @@ var gyroscopeSchema = new Schema({
 	'xRotation' : Number,
 	'yRotation' : Number,
 	'zRotation' : Number,
-	'timestamp' : Date
+	'timestamp' : Date,
+	'locationId' : String
 });
 
 module.exports = mongoose.model('gyroscope', gyroscopeSchema);
