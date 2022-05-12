@@ -49,17 +49,17 @@ const Navbar = () => {
                 </NavBtn>*/}
                 {click && (
                     <NavExtended>
-                    <NavBarLink to="/about"  activeStyle>
+                    <NavBarLink to="/about" onClick={handleClick}  activeStyle>
                         About
                     </NavBarLink>
-                    <NavBarLink to="/map"  activeStyle>
+                    <NavBarLink to="/map" onClick={handleClick}  activeStyle>
                         Map
                     </NavBarLink>
 
-                    <NavBarLink to="/sign-up"  activeStyle>
+                    <NavBarLink to="/sign-up" onClick={handleClick}  activeStyle>
                         Sign up
                     </NavBarLink>
-                    <NavBtnLink to="/signin" >Sign in</NavBtnLink>
+                    <NavBtnLink to="/signin" onClick={handleClick} >Sign in</NavBtnLink>
                 </NavExtended>)}
             </Nav>
         </>

@@ -1,12 +1,15 @@
 import React from "react";
+import HomeSection from "../components/HomeSection";
 
 const Home = () => {
     return (
         <div style={{
-            display: "flex", justifyContent: "center", alignItems: "center",
+            display: "flex",
             height: '90vh'
         }}>
-            <h1>Home</h1>
+            <>
+            <HomeSection/>
+            </>
         </div>
     )
 }

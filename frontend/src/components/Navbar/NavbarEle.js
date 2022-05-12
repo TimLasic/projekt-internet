@@ -9,6 +9,7 @@ export const Nav = styled.nav`
     justify-content: space-between;
     padding: 0.5rem calc((100vw - 1000px) / 2);
     z-index: 10;
+    position: sticky;
     
     @media screen and (min-width: 768px) {
         height: 80px;
@@ -23,9 +24,15 @@ export const NavLink =  styled(Link)`
     display: flex;
     padding: 0 1rem;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
     
     &.active {
         color: #15cdfc;
+        border-bottom: 3px solid #15cdfc;
+    }
+    &:hover {
+        color: #15cdfc;
+        transition: 0.2s ease-in-out;
     }
 `
 
@@ -101,6 +108,7 @@ export const NavExtended = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
+    transition: 0.3s ease-in-out;
     @media  (min-width: 768px) {
         display: none;
     }
@@ -114,9 +122,15 @@ export const NavBarLink =  styled(Link)`
     display: flex;
     padding: 0 1rem;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
     
     &.active {
         color: #15cdfc;
+        
+    }
+    &:hover {
+        color: #15cdfc;
+        transition: 0.2s ease-in-out;
     }
 `
 
@@ -126,7 +140,7 @@ export const NavLogoLink =  styled(Link)`
     text-decoration: none;
     margin: 20px;
     display: ${(props) => (props.extendNavBar ? "none" : "flex")};
-  
+    transition: 0.2s ease-in-out;
 
     padding: 0 1rem;
     cursor: pointer;
@@ -136,5 +150,9 @@ export const NavLogoLink =  styled(Link)`
     }
     &.active {
         color: #15cdfc;
+    }
+    &:hover {
+        color: #15cdfc;
+        transition: 0.2s ease-in-out;
     }
 `
