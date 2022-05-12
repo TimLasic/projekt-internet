@@ -5,6 +5,7 @@ import './App.css';
 import Home from "./pages";
 import About from "./pages/about";
 import Map from "./pages/map";
+import Stats from "./pages/stats";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" exact element={<Home/>}/>
             <Route path="/about" exact element={<About/>}/>
             <Route path="/map" exact element={<Map/>}/>
+            <Route path="/stats" exact element={<Stats/>}/>
         </Routes>
     </Router>
   );

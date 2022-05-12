@@ -18,7 +18,7 @@ export const Nav = styled.nav`
 export const NavLink =  styled(Link)`
     color: #fff;
     align-items: center;
-    text-decorations: none;
+    text-decoration: none;
     height: 100%;
     display: flex;
     padding: 0 1rem;
@@ -78,12 +78,12 @@ export const NavBtnLink = styled(Link)`
     color: #fff;
     border: none;
     outline: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
     cursor: pointer
     transition: all 0.2s ease-in-out;
     text-decoration: none;
-    
-    /*2nd nav*/
-    margin-left: 24px;
 
     
     &:hover {
@@ -99,6 +99,8 @@ export const NavExtended = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 100%;
     @media  (min-width: 768px) {
         display: none;
     }
@@ -107,7 +109,7 @@ export const NavExtended = styled.div`
 export const NavBarLink =  styled(Link)`
     color: #fff;
     align-items: center;
-    text-decorations: none;
+    text-decoration: none;
     margin: 20px;
     display: flex;
     padding: 0 1rem;
@@ -121,7 +123,7 @@ export const NavBarLink =  styled(Link)`
 export const NavLogoLink =  styled(Link)`
     color: #fff;
     align-items: center;
-    text-decorations: none;
+    text-decoration: none;
     margin: 20px;
     display: ${(props) => (props.extendNavBar ? "none" : "flex")};
   
