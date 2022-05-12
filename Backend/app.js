@@ -9,6 +9,7 @@ var usersRouter = require('./routes/userRoutes');
 var locationRouter = require('./routes/locationRoutes');
 var accelerometerRouter = require('./routes/accelerometerRoutes');
 var gyroscopeRouter = require('./routes/gyroscopeRoutes');
+var roadRouter = require('./routes/roadRoutes');
 
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb+srv://glz:2co2PWA1XxZ1WcE5@cluster0.aib4i.mongodb.net/projektDB?retryWrites=true&w=majority';
@@ -67,6 +68,7 @@ app.use('/users', usersRouter);
 app.use('/locations', locationRouter);
 app.use('/accelerometers', accelerometerRouter);
 app.use('/gyroscopes', gyroscopeRouter);
+app.get('/roads', roadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

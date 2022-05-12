@@ -5,7 +5,6 @@ var gyroscopeSchema = new Schema({
 	'xRotation' : Number,
 	'yRotation' : Number,
 	'zRotation' : Number,
-	'timestamp' : Date,
 	'locationId' : String
 });
 

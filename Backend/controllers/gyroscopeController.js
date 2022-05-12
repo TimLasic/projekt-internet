@@ -55,7 +55,6 @@ module.exports = {
 			xRotation : req.body.xRotation,
 			yRotation : req.body.yRotation,
 			zRotation : req.body.zRotation,
-			timestamp : req.body.timestamp,
             locationId : req.body.locationId
         });
 
@@ -94,7 +93,6 @@ module.exports = {
             gyroscope.xRotation = req.body.xRotation ? req.body.xRotation : gyroscope.xRotation;
 			gyroscope.yRotation = req.body.yRotation ? req.body.yRotation : gyroscope.yRotation;
 			gyroscope.zRotation = req.body.zRotation ? req.body.zRotation : gyroscope.zRotation;
-			gyroscope.timestamp = req.body.timestamp ? req.body.timestamp : gyroscope.timestamp;
             gyroscope.locationId = req.body.locationId ? req.body.locationId : gyroscope.locationId;
 			
             gyroscope.save(function (err, gyroscope) {
