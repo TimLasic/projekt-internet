@@ -24,7 +24,7 @@ var app = express();
 
 //cors
 var cors = require('cors');
-var allowedOrigins = ['http://localhost:3000', 'http://localhost:3001'];
+var allowedOrigins = ['https://projekt-glz-frontend.herokuapp.com', 'https://projekt-glz.herokuapp.com'];
 app.use(cors({
   credentials: true,
   origin: function(origin, callback){
