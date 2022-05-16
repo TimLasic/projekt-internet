@@ -10,7 +10,7 @@ const Signup = () => {
     function onClickSignup () {
         let item={username, email, password}
 
-        $.ajax({method:"post", url:"https://projekt-glz-frontend.herokuapp.com/users", data:item, header:{"Content-Type":'application/x-www-form-urlencoded'}, success:function(data){
+        $.ajax({method:"post", url:"https://projekt-glz.herokuapp.com/users", data:item, header:{"Content-Type":'application/x-www-form-urlencoded'}, success:function(data){
             window.location.replace("/sign-in");
         }});
     }
