@@ -127,9 +127,9 @@ module.exports = {
     },
 
     login: function (req, res, next) {
-        UserModel.authenticate(req.body.username, req.body.password, function (err, user) {
-            if (err || !user) {
-                var err = new Error('Wrong username or paassword');
+        UserModel.authenticate(req.body.username, req.body.password, function (error, user) {
+            if (error || !user) {
+                var err = new Error('Wrong username or password');
                 err.status = 401;
                 return next(err);
             }

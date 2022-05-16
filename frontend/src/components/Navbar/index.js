@@ -42,7 +42,7 @@ const Navbar = () => {
                     <NavLink to="/sign-up"  activeStyle>
                         Sign up
                     </NavLink>
-                    <NavBtnLink to="/signin" >Sign in</NavBtnLink>
+                    <NavBtnLink to="/sign-in" >Sign in</NavBtnLink>
                 </NavMenu>
                 {/*<NavBtn>
                     <NavBtnLink to="/signin">Sign in</NavBtnLink>
@@ -59,7 +59,7 @@ const Navbar = () => {
                     <NavBarLink to="/sign-up" onClick={handleClick}  activeStyle>
                         Sign up
                     </NavBarLink>
-                    <NavBtnLink to="/signin" onClick={handleClick} >Sign in</NavBtnLink>
+                    <NavBtnLink to="/sign-in" onClick={handleClick} >Sign in</NavBtnLink>
                 </NavExtended>)}
             </Nav>
         </>
