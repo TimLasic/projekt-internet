@@ -16,7 +16,7 @@ const SignIn = () => {
 
         display.textContent = '';
 
-        $.ajax({method:"post", url:"http://localhost:3001/users/login", data:item, header:{"Content-Type":'application/x-www-form-urlencoded'}, success:function(data){
+        $.ajax({method:"post", url:"https://projekt-glz-frontend.herokuapp.com/users/login", data:item, header:{"Content-Type":'application/x-www-form-urlencoded'}, success:function(data){
             window.location.replace("/");
         }, error:function (data){
             if (data.status === 401) {
