@@ -18,7 +18,10 @@ module.exports = {
                     error: err
                 });
             }
-
+           /* locations.sort(function (a, b) {
+                return a.timestamp - b.timestamp;
+            })*/
+            //return res.json(locations[0]);
             return res.json(locations);
         });
     },
