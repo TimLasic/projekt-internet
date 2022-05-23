@@ -44,8 +44,8 @@ const Map = () => {
             />
             {
                 locations.map((location,index) => {return index + 1 <= locations.length-1 ?
-                    <Polyline key={index} pathOptions={{color: location.state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index+1].latitude,locations[index+1].longitude]]}></Polyline> :
-                    <Polyline key={index} pathOptions={{color: location.state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index].latitude,locations[index].longitude]]}></Polyline>
+                    <Polyline key={index} pathOptions={{color: locations[index+1].state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index+1].latitude,locations[index+1].longitude]]}></Polyline> :
+                    <Polyline key={index} pathOptions={{color: locations[index].state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index].latitude,locations[index].longitude]]}></Polyline>
                 })
 
 
