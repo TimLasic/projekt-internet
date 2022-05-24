@@ -1,10 +1,14 @@
 import React, {useState} from 'react'
 import $ from 'jquery'
+import { UserContext } from '../userContext';
+import { useContext} from 'react';
+import { Navigate } from 'react-router-dom';
 
 const SignIn = () => {
 
     const [username, setUsername]=useState("")
     const [password, setPassword]=useState("")
+    const userContext = useContext(UserContext);
 
     const display = document.querySelector('.error');
 
@@ -22,11 +26,15 @@ const SignIn = () => {
             if (data.status === 401) {
                 return display.textContent = "Wrong username and password!";
             }
+            else{
+                userContext.setUserContext(data);
+            }
         }});
     }
 
     return (
         <div>
+            {userContext.user ? <Navigate replace to="/" /> : ""}
             <h1>Sign-in</h1>
             <div className="error" style={{color: "red", display: "inline-block"}}></div><br/>
             <label>Username:</label><br/>
