@@ -32,6 +32,10 @@ const Navbar = () => {
                 </NavLogoLink>
                 <Bars onClick={handleClick} />
                 <NavMenu extendNavBar={click}>
+                    <NavLink to="/stats"  activeStyle>
+                        Statistics
+                    </NavLink>
+
                     <NavLink to="/about"  activeStyle>
                         About
                     </NavLink>
@@ -42,6 +46,9 @@ const Navbar = () => {
                     <NavLink to="/sign-up"  activeStyle>
                         Sign up
                     </NavLink>
+
+
+
                     <NavBtnLink to="/sign-in" >Sign in</NavBtnLink>
                 </NavMenu>
                 {/*<NavBtn>
@@ -54,6 +61,10 @@ const Navbar = () => {
                     </NavBarLink>
                     <NavBarLink to="/map" onClick={handleClick}  activeStyle>
                         Map
+                    </NavBarLink>
+
+                    <NavBarLink to="/stats" onClick={handleClick}  activeStyle>
+                        Statistics
                     </NavBarLink>
 
                     <NavBarLink to="/sign-up" onClick={handleClick}  activeStyle>
