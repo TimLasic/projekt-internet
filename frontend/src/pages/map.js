@@ -60,10 +60,26 @@ const Map = () => {
 export default Map
 
             {/*{
-                polylines.map((polyline,index) => {return index + 1 <= polylines.length-1 ?
-                    <Polyline key={index} pathOptions={colorOptions[index]} positions={[polylines[index],polylines[index+1]]}></Polyline> :
-                    <Polyline key={index} pathOptions={colorOptions[index]} positions={[polylines[index],polylines[index]]}></Polyline>
+                locations.map((location,index) => {return index + 1 <= locations.length-1 ?
+                    <Polyline key={index} pathOptions={{color: locations[index+1].state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index+1].latitude,locations[index+1].longitude]]}></Polyline> :
+                    <Polyline key={index} pathOptions={{color: locations[index].state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index].latitude,locations[index].longitude]]}></Polyline>
                 })
 
 
             }*/}
+
+            /*
+            locations.map((location,index) => {return index + 1 <= locations.length-1 ?
+                    (locations[index + 1].timestamp - locations[index].timestamp > 10 ?
+                        <Polyline key={index} pathOptions={{color: locations[index + 1].state}} positions={[[locations[index].latitude, locations[index].longitude], [locations[index + 1].latitude, locations[index + 1].longitude]]}></Polyline> :
+                        <Polyline key={index} pathOptions={{color: locations[index].state}} positions={[[locations[index].latitude, locations[index].longitude], [locations[index].latitude, locations[index].longitude]]}></Polyline>) :
+                    console.log("error")
+                })
+            */
+
+            /*
+            locations.map((location,index) => {return index + 1 <= locations.length-1 && locations[index + 1].timestamp - locations[index].timestamp > 10 ?
+                        <Polyline key={index} pathOptions={{color: locations[index + 1].state}} positions={[[locations[index].latitude, locations[index].longitude], [locations[index + 1].latitude, locations[index + 1].longitude]]}></Polyline> :
+                        <Polyline key={index} pathOptions={{color: locations[index].state}} positions={[[locations[index].latitude, locations[index].longitude], [locations[index].latitude, locations[index].longitude]]}></Polyline>
+                })
+            */

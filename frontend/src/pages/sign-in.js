@@ -21,13 +21,11 @@ const SignIn = () => {
         display.textContent = '';
 
         $.ajax({method:"post", url:"https://projekt-glz.herokuapp.com/users/login", data:item, header:{"Content-Type":'application/x-www-form-urlencoded'}, success:function(data){
+            userContext.setUserContext(data);
             window.location.replace("/");
         }, error:function (data){
             if (data.status === 401) {
                 return display.textContent = "Wrong username and password!";
-            }
-            else{
-                userContext.setUserContext(data);
             }
         }});
     }
