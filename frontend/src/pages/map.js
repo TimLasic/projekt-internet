@@ -11,7 +11,6 @@ import {useEffect} from "react";
 const Map = () => {
     const[locations, setLocations] = useState([]);
 
-
     useEffect(function () {
         const getLocations = async function () {
             const res = await fetch("https://projekt-glz.herokuapp.com/locations");
@@ -43,7 +42,7 @@ const Map = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {
-                locations.map((location,index) => {return index + 1 <= locations.length-1 ?
+                locations.map((location,index) => {return index + 1 <= locations.length-1 && locations[index+1].roadId === locations[index].roadId ?
                     <Polyline key={index} pathOptions={{color: locations[index+1].state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index+1].latitude,locations[index+1].longitude]]}></Polyline> :
                     <Polyline key={index} pathOptions={{color: locations[index].state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index].latitude,locations[index].longitude]]}></Polyline>
                 })
@@ -83,3 +82,10 @@ export default Map
                         <Polyline key={index} pathOptions={{color: locations[index].state}} positions={[[locations[index].latitude, locations[index].longitude], [locations[index].latitude, locations[index].longitude]]}></Polyline>
                 })
             */
+
+/*
+locations.map((location,index) => {return index + 1 <= locations.length-1 ?
+                    (locations[index+1].roadId === locations[index].roadId ?
+                    <Polyline key={index} pathOptions={{color: locations[index+1].state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index+1].latitude,locations[index+1].longitude]]}></Polyline> : {}) :
+                    <Polyline key={index} pathOptions={{color: locations[index].state}} positions={[[locations[index].latitude,locations[index].longitude],[locations[index].latitude,locations[index].longitude]]}></Polyline>
+                })*/
