@@ -68,7 +68,7 @@ app.use('/users', usersRouter);
 app.use('/locations', locationRouter);
 app.use('/accelerometers', accelerometerRouter);
 app.use('/gyroscopes', gyroscopeRouter);
-app.get('/roads', roadRouter);
+app.use('/roads', roadRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
