@@ -58,7 +58,8 @@ module.exports = {
 			latitude : req.body.latitude,
 			longitude : req.body.longitude,
 			state : req.body.state,
-            timestamp : req.body.timestamp
+            timestamp : req.body.timestamp,
+            roadId : req.body.roadId
         });
 
         location.save(function (err, location) {
@@ -97,7 +98,8 @@ module.exports = {
 			location.longitude = req.body.longitude ? req.body.longitude : location.longitude;
 			location.state = req.body.state ? req.body.state : location.state;
             location.timestamp = req.body.timestamp ? req.body.timestamp : location.timestamp;
-			
+            location.roadId = req.body.roadId ? req.body.roadId : location.roadId;
+
             location.save(function (err, location) {
                 if (err) {
                     return res.status(500).json({

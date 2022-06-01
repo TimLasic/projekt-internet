@@ -5,7 +5,8 @@ var locationSchema = new Schema({
 	'latitude' : Number,
 	'longitude' : Number,
 	'state' : String,
-	'timestamp' : Date
+	'timestamp' : Date,
+	'roadId' : String
 });
 
 module.exports = mongoose.model('location', locationSchema);

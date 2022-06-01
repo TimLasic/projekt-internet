@@ -52,7 +52,7 @@ module.exports = {
      */
     create: function (req, res) {
         var road = new RoadModel({
-			road : req.body.road
+			name : req.body.name
         });
 
         road.save(function (err, road) {
@@ -87,7 +87,7 @@ module.exports = {
                 });
             }
 
-            road.road = req.body.road ? req.body.road : road.road;
+            road.name = req.body.name ? req.body.name : road.name;
 			
             road.save(function (err, road) {
                 if (err) {
