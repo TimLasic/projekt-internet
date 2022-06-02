@@ -1,5 +1,6 @@
 var UserModel = require('../models/userModel.js');
 
+
 /**
  * userController.js
  *
@@ -69,7 +70,87 @@ module.exports = {
             return res.status(201).json(user);
         });
     },
+    /**
+     * userController.upload()
+     */
 
+    upload: function (req, res) {
+        var id = req.params.id;
+
+        UserModel.findOne({_id: id}, function (err, user) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting photo',
+                    error: err
+                });
+            }
+
+            if (!user) {
+                return res.status(404).json({
+                    message: 'No such photo'
+                });
+            }
+
+            user.path.unshift(req.file.path);
+
+            user.save(function (err, user) {
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Error when updating photo.',
+                        error: err
+                    });
+                }
+
+                return res.json(user);
+            });
+        });
+    },
+
+    /**
+     * userController.upload()
+     */
+
+    face_recognize: function (req, res) {
+        var id = req.params.id;
+
+        UserModel.findOne({_id: id}, function (err, user) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting photo',
+                    error: err
+                });
+            }
+
+            if (!user) {
+                return res.status(404).json({
+                    message: 'No such photo'
+                });
+            }
+
+            user.path.unshift(req.file.path);
+
+            user.save(function (err, user) {
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Error when updating photo.',
+                        error: err
+                    });
+                }
+
+                return res.json(user);
+            });
+            var spawn = require("child_process").spawn;
+            var process = spawn('python',["./hello.py",
+                user.path,
+                req.file.path] );
+
+            // Takes stdout data from script which executed
+            // with arguments and send this data to res object
+            process.stdout.on('data', function(data) {
+                console.log("OK"+ data.toString());
+            } )
+        });
+    },
     /**
      * userController.update()
      */

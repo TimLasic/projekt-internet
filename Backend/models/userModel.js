@@ -6,7 +6,7 @@ var userSchema = new Schema({
     'username': String,
     'email': String,
     'password': String,
-    'img_path': String
+    'img_path': [String]
 });
 
 userSchema.statics.authenticate = function (username, password, callback) {
