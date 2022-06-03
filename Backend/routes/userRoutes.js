@@ -24,6 +24,7 @@ router.get('/', userController.list);
  * GET
  */
 router.get('/profile', userController.profile);
+router.get('/pyscript', userController.pyscript); //TODO
 router.get('/logout', userController.logout);
 router.get('/:id', userController.show);
 

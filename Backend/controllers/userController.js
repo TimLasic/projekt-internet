@@ -139,7 +139,7 @@ module.exports = {
 
                 return res.json(user);
             });
-            var spawn = require("child_process").spawn;
+            var spawn = require("child_process").spawn;  // mogoce gor
             var process = spawn('python',["./hello.py",
                 user.path,
                 req.file.path] );
@@ -151,6 +151,30 @@ module.exports = {
             } )
         });
     },
+
+    pyscript: function (req, res) {
+        //var dataToSend;
+
+        const spawn = require('child_process').spawn;
+        const python = spawn('python', ['./controllers/test.py', './controllers/man.jpg']);
+
+        python.stdout.on('data', (data) => {
+            console.log(`${data}`);
+
+        });
+
+        python.stderr.on('data', (data) => {
+            //console.log(`stderr: ${data}`);
+        });
+
+        python.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+            //res.send(dataToSend)
+
+        });
+        return res.json({"status":"success"});
+    },
+
     /**
      * userController.update()
      */
