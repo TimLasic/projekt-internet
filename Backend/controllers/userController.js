@@ -91,7 +91,7 @@ module.exports = {
                 });
             }
 
-            user.path.unshift(req.file.path);
+            user.path.unshift("/images/"+req.file.filename);
 
             user.save(function (err, user) {
                 if (err) {
@@ -127,7 +127,7 @@ module.exports = {
                 });
             }
 
-            user.path.unshift(req.file.path);
+            user.path.unshift("/images/"+req.file.filename);
 
             user.save(function (err, user) {
                 if (err) {
