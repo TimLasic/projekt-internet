@@ -1,4 +1,6 @@
 var UserModel = require('../models/userModel.js');
+const {spawn} = require("child_process");
+const {colors} = require("debug");
 
 
 /**
@@ -73,12 +75,8 @@ module.exports = {
     /**
      * userController.upload()
      */
-
     upload: function (req, res) {
         var id = req.body.id;
-
-        console.warn("DEBUG file: ", req.file);
-        console.warn("DEBUG id: ", req.body.id);
 
         UserModel.findOne({_id: id}, function (err, user) {
             if (err) {
@@ -94,88 +92,36 @@ module.exports = {
                 });
             }
 
-            user.img_path.unshift("uploads/"+req.file.filename);
-
-            user.save(function (err, user) {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Error when updating photo.',
-                        error: err
-                    });
-                }
-
-                return res.json(user);
-            });
+            return res.json(user);
         });
     },
 
     /**
-     * userController.upload()
+     * userController.pyscript()
      */
-
-    /*face_recognize: function (req, res) {
-        var id = req.params.id;
-
-        UserModel.findOne({_id: id}, function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting photo',
-                    error: err
-                });
-            }
-
-            if (!user) {
-                return res.status(404).json({
-                    message: 'No such photo'
-                });
-            }
-
-            user.path.unshift("/images/"+req.file.filename);
-
-            user.save(function (err, user) {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Error when updating photo.',
-                        error: err
-                    });
-                }
-
-                return res.json(user);
-            });
-            var spawn = require("child_process").spawn;  // mogoce gor
-            var process = spawn('python',["./hello.py",
-                user.path,
-                req.file.path] );
-
-            // Takes stdout data from script which executed
-            // with arguments and send this data to res object
-            process.stdout.on('data', function(data) {
-                console.log("OK"+ data.toString());
-            } )
-        });
-    },*/
-
     pyscript: function (req, res) {
-        //var dataToSend;
-
         const spawn = require('child_process').spawn;
-        const python = spawn('python', ['./controllers/test.py', './controllers/fox.jpg']);
+        const python = spawn('python', ['./controllers/test.py', req.body.username]);
 
         python.stdout.on('data', (data) => {
-            console.log(`${data}`);
-
+            console.log(data.toString())
+            if (data.toString().includes('Unlocked')) {
+                return res.status(201).json("Unlocked");
+            } else {
+                return res.status(500).json({
+                    message: 'Error when Unlocking',
+                    error: data
+                });
+            }
         });
 
         python.stderr.on('data', (data) => {
-            console.log(`stderr: ${data}`);
         });
 
         python.on('close', (code) => {
             console.log(`child process exited with code ${code}`);
             //res.send(dataToSend)
-
-        });
-        return res.json({"status":"success"});
+        })
     },
 
     /**

@@ -18,10 +18,16 @@ Training_Data, Labels = [], []
 # Open training images in our datapath
 # Create a numpy array for training data
 for i, files in enumerate(onlyfiles):
+    if "jerry" in onlyfiles[i]:
+        Labels.append(0)
+    elif "tim" in onlyfiles[i]:
+        Labels.append(1)
+    else:
+        Labels.append(2)
     image_path = data_path + onlyfiles[i]
     images = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     Training_Data.append(np.asarray(images, dtype=np.uint8))
-    Labels.append(i)
+    #Labels.append(i)
 
 # Create a numpy array for both training data and labels
 Labels = np.asarray(Labels, dtype=np.int32)
@@ -60,11 +66,9 @@ full_new_path = uploads_path + "/" + new_name
 
 os.rename(uploads_path + "/" + old_name[0], full_new_path)
 
-frame = cv2.imread(full_new_path)                                         # TODO "./controllers/re1.jpg"
+frame = cv2.imread(full_new_path)
 
 os.remove(full_new_path)
-
-print("DEBUG: ", frame.shape[1])
 
 image, face = face_detector(frame)
 
@@ -74,19 +78,26 @@ try:
     # Pass face to prediction model
     results = model.predict(face)
 
+    if results[0] == 0:
+        username = "jerryberry"
+    elif results[0] == 1:
+        username = "tim"
+    else:
+        username = "fox"
     if results[1] < 500:
         confidence = int( 100 * (1 - (results[1])/400) )
-        display_string = str(confidence) + '% Confident it is Fox'
+        display_string = str(confidence) + '% Confident it is ' + username
 
     cv2.putText(image, display_string, (100, 120), cv2.FONT_HERSHEY_COMPLEX, 1, (255,120,150), 2)
 
-    if confidence > 85:
-        cv2.putText(image, "Unlocked", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)
-        print(display_string)
-        print("Unlocked")
+    if confidence > 80:
+        if (sys.argv[1] == username):
+            cv2.putText(image, "Unlocked", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)
+            #print(display_string)
+            print("Unlocked")
     else:
         cv2.putText(image, "Locked", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
-        print(display_string)
+        #print(display_string)
         print("Locked")
 
 except:
