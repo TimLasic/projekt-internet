@@ -24,18 +24,26 @@ const Stats = () => {
             const data = await res.json();
             setLocations(data);
 
-            data.forEach(location => {
-                if (location.state === "red") {
-                    setRedState(redState+1);
-                } else if (location.state === "orange") {
-                    setOrangeState(orangeState+1);
-                } else if (location.state === "green") {
-                    setGreenState(greenState+1);
+            let counterGreen = 0;
+            let counterOrange = 0;
+            let counterRed = 0;
+
+            for (let i = 0; i < locations.length; i++) {
+                if (locations[i].state === "red") {
+                    counterRed += 1;
+                } else if (locations[i].state === "orange") {
+                    counterOrange += 1;
+                } else if (locations[i].state === "green") {
+                    counterGreen += 1;
                 }
-            })
+            }
+
+            setGreenState(counterGreen);
+            setOrangeState(counterOrange);
+            setRedState(counterRed);
         }
         getLocations();
-    }, []);
+    }, [locations]);
 
     const state = {
         labels: ["Excellent", "Good", "Bad"],
@@ -55,9 +63,7 @@ const Stats = () => {
                     '#501800'
                 ],
                 borderWidth: 1,
-                data:[12,6,2]
-                // green, green, red, green, orange, orange, orange, green, green, green, green, green, red, green, orange, orange, orange, green, green, green
-                //data: [greenState,orangeState,redState]
+                data:[greenState,orangeState,redState]
             }
         ]
     };
