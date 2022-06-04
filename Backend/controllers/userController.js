@@ -75,7 +75,10 @@ module.exports = {
      */
 
     upload: function (req, res) {
-        var id = req.params.id;
+        var id = req.body.id;
+
+        console.warn("DEBUG file: ", req.file);
+        console.warn("DEBUG id: ", req.body.id);
 
         UserModel.findOne({_id: id}, function (err, user) {
             if (err) {
@@ -91,7 +94,7 @@ module.exports = {
                 });
             }
 
-            user.path.unshift("/images/"+req.file.filename);
+            user.img_path.unshift("uploads/"+req.file.filename);
 
             user.save(function (err, user) {
                 if (err) {
@@ -110,7 +113,7 @@ module.exports = {
      * userController.upload()
      */
 
-    face_recognize: function (req, res) {
+    /*face_recognize: function (req, res) {
         var id = req.params.id;
 
         UserModel.findOne({_id: id}, function (err, user) {
@@ -150,13 +153,13 @@ module.exports = {
                 console.log("OK"+ data.toString());
             } )
         });
-    },
+    },*/
 
     pyscript: function (req, res) {
         //var dataToSend;
 
         const spawn = require('child_process').spawn;
-        const python = spawn('python', ['./controllers/test.py', './controllers/man.jpg']);
+        const python = spawn('python', ['./controllers/test.py', './controllers/fox.jpg']);
 
         python.stdout.on('data', (data) => {
             console.log(`${data}`);
@@ -164,7 +167,7 @@ module.exports = {
         });
 
         python.stderr.on('data', (data) => {
-            //console.log(`stderr: ${data}`);
+            console.log(`stderr: ${data}`);
         });
 
         python.on('close', (code) => {

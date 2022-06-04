@@ -1,17 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
+//var upload = multer({storage: storage});
+var upload = multer({dest: "./uploads"});
 
-var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './public/images');
-    },
+/*var storage = multer.diskStorage({
+    destination: "./uploads",
     filename: function (req, file, cb) {
         cb(null , file.originalname);
     }
-});
+});*/
 
-var upload = multer({storage: storage});
 var userController = require('../controllers/userController.js');
 
 
@@ -34,8 +33,8 @@ router.get('/:id', userController.show);
 router.post('/', userController.create);
 router.post('/login', userController.login);
 
-router.post('/upload/:id', upload.single('image'),userController.upload);
-router.post('/face_recognize/:id', upload.single('image'),userController.face_recognize);
+router.post('/upload', upload.single('image'), userController.upload);
+//router.post('/face_recognize/:id', upload.single('image'),userController.face_recognize);
 
 /*
  * PUT

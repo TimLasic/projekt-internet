@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import os
 from os import listdir
 from os.path import isfile, join
 import sys
@@ -49,8 +50,22 @@ def face_detector(img, size=0.5):
         roi = cv2.resize(roi, (200, 200))
     return img, roi
 
+# Get the image from /uploads
+uploads_path = './uploads'
+old_name = [f for f in listdir(uploads_path) if isfile(join(uploads_path, f))]
 
-frame = cv2.imread(sys.argv[1])                                         # TODO "./controllers/re1.jpg"
+new_name = "image.jpg"
+
+full_new_path = uploads_path + "/" + new_name
+
+os.rename(uploads_path + "/" + old_name[0], full_new_path)
+
+frame = cv2.imread(full_new_path)                                         # TODO "./controllers/re1.jpg"
+
+os.remove(full_new_path)
+
+print("DEBUG: ", frame.shape[1])
+
 image, face = face_detector(frame)
 
 try:
@@ -67,19 +82,16 @@ try:
 
     if confidence > 85:
         cv2.putText(image, "Unlocked", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)
-        cv2.imshow('Face Recognition', image )
         print(display_string)
         print("Unlocked")
     else:
         cv2.putText(image, "Locked", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
-        cv2.imshow('Face Recognition', image )
         print(display_string)
         print("Locked")
 
 except:
     cv2.putText(image, "No Face Found", (220, 120) , cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
     cv2.putText(image, "Locked", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
-    cv2.imshow('Face Recognition', image )
     print("No Face Found")
     pass
 
