@@ -108,10 +108,7 @@ module.exports = {
             if (data.toString().includes('Unlocked')) {
                 return res.status(201).json("Unlocked");
             } else {
-                return res.status(500).json({
-                    message: 'Error when Unlocking',
-                    error: data
-                });
+                return res.status(200).json("Locked");
             }
         });
 
